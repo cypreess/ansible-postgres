@@ -1,0 +1,3 @@
+---
+# defaults file for postgresql
+  postgresql_version: 10
