@@ -22,3 +22,14 @@
 - name: Ensure the PostgreSQL service is running
   service: name=postgresql state=started enabled=yes
 
+- name: Install postgis
+  apt: name={{ item }} update_cache=yes state=present
+  with_items:
+    - binutils
+    - libproj-dev
+    - gdal-bin
+    - postgresql-{{ postgresql_version }}-postgis-{{ postgis_version }}
+    - postgresql-server-dev-{{ postgresql_version }}
+  when: postgis_enabled
+  tags:
+    - geodjango
